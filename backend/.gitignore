@@ -1,0 +1,86 @@
+## .NET / ASP.NET Core
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MSTest
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+
+# Publish output
+**/publish/
+**/PublishProfiles/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio
+.vs/
+*.rsuser
+*.pidb
+*.polyloaderrjson
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/*.code-snippets
+.history/
+
+## User-specific files
+*.db-shm
+*.db-wal
+
+## Secrets & Config overrides
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Local.json
+**/secrets.json
+*.pfx
+*.p12
+
+## Entity Framework Migrations (optional — remove if you want to track migrations)
+# Migrations/
+
+## Storage folders (runtime-generated content)
+Storage/Uploads/*
+Storage/Templates/*
+Storage/Outputs/*
+!Storage/Uploads/.gitkeep
+!Storage/Templates/.gitkeep
+!Storage/Outputs/.gitkeep
+
+## OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+
+## Logs
+*.log
+npm-debug.log*
+
