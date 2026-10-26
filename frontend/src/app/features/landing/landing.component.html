@@ -1,0 +1,130 @@
+<div class="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden flex flex-col justify-between">
+  <!-- Glow backgrounds -->
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[720px] h-[480px] bg-gradient-to-b from-indigo-600/20 via-purple-600/10 to-transparent blur-3xl pointer-events-none rounded-full animate-subtle-pulse"></div>
+  <div class="absolute bottom-10 -left-36 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute top-1/2 -right-36 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <!-- Main Content Container -->
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-20 flex-1 flex flex-col justify-center">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-6">
+      
+      <!-- Pill Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/80 border border-indigo-800/60 text-xs font-semibold text-indigo-300 shadow-sm backdrop-blur-sm">
+        <span class="flex h-2 w-2 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+        </span>
+        Batch Document Automation Engine
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+        Generate <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">Multi-Page PDFs</span> from CSV & Excel Spreadsheets
+      </h1>
+
+      <!-- Detailed App Description -->
+      <p class="text-base sm:text-lg text-slate-300 leading-relaxed">
+        <strong>PDF Automation</strong> takes your tabular datasets (<span class="text-indigo-300 font-mono">.csv</span>, <span class="text-emerald-300 font-mono">.xlsx</span>) and your template (<span class="text-rose-300 font-mono">.pdf</span> or <span class="text-blue-300 font-mono">.docx</span>), merges each row of data into the template fields, and delivers a completed, print-ready multi-page PDF where each page contains one row's data.
+      </p>
+
+      <!-- Google OAuth Sign-In Box -->
+      <div class="pt-4 max-w-md mx-auto">
+        <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-2xl backdrop-blur-xl space-y-4">
+          <div class="text-center">
+            <h2 class="text-base font-semibold text-white">Sign In to Get Started</h2>
+            <p class="text-xs text-slate-400 mt-1">Authenticate with your Google account to access your workspace</p>
+          </div>
+
+          <!-- Loading Spinner during OAuth handshake -->
+          @if (isLoggingIn) {
+            <div class="flex items-center justify-center gap-2 py-3 text-sm text-indigo-300 font-medium bg-slate-950 rounded-xl border border-slate-800">
+              <svg class="animate-spin h-5 w-5 text-indigo-400" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+              <span>Verifying with backend...</span>
+            </div>
+          } @else {
+            <!-- Official Google Sign-In Button Component -->
+            <div class="flex justify-center p-2 rounded-xl bg-slate-950 border border-slate-800/80 min-h-[46px] items-center">
+              <asl-google-signin-button 
+                type="standard" 
+                size="large" 
+                theme="outline" 
+                text="signin_with"
+                shape="rectangular"
+                logo_alignment="left">
+              </asl-google-signin-button>
+            </div>
+          }
+
+          @if (errorMessage) {
+            <div class="p-2.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-xs text-rose-300 text-center">
+              {{ errorMessage }}
+            </div>
+          }
+
+          <div class="relative flex items-center justify-center py-1">
+            <div class="border-t border-slate-800 w-full"></div>
+            <span class="bg-slate-900 px-3 text-[11px] text-slate-500 uppercase tracking-wider absolute">or preview</span>
+          </div>
+
+          <!-- Quick Demo Access (instant redirect to /home) -->
+          <button
+            type="button"
+            (click)="demoLogin()"
+            class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 hover:border-indigo-500/50 transition-colors cursor-pointer shadow-sm"
+          >
+            <svg class="w-4 h-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Continue with Demo Mode
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3-Step Process Cards -->
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm hover:border-slate-700 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm mb-4">
+          01
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">1. Input Dataset</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Provide your data in <span class="text-slate-200 font-semibold">CSV</span> or <span class="text-slate-200 font-semibold">Excel (.xlsx, .xls)</span> format. Every row represents a unique record (e.g. employee, student, or client invoice).
+        </p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm hover:border-slate-700 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-sm mb-4">
+          02
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">2. Document Template</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Provide your base template as a <span class="text-slate-200 font-semibold">fillable PDF</span> form or a <span class="text-slate-200 font-semibold">Word (.docx)</span> document containing placeholder tokens like <code class="text-rose-300 font-mono" ngNonBindable>{{Full_Name}}</code>.
+        </p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 backdrop-blur-sm hover:border-slate-700 transition-colors">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm mb-4">
+          03
+        </div>
+        <h3 class="text-base font-bold text-white mb-2">3. Multi-Page Output</h3>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          The engine writes each row's data into the template and concatenates the resulting pages into one <span class="text-slate-200 font-semibold">consolidated multi-page PDF</span> ready to download and distribute.
+        </p>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+

@@ -1,0 +1,82 @@
+<div class="min-h-screen bg-slate-950 text-slate-100 p-6 sm:p-10">
+  <div class="max-w-4xl mx-auto space-y-8">
+    
+    <!-- Top Welcome Banner -->
+    @if (currentUser$ | async; as user) {
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-5 text-center sm:text-left">
+          @if (user.pictureUrl) {
+            <img [src]="user.pictureUrl" [alt]="user.name" class="w-16 h-16 rounded-2xl object-cover ring-2 ring-indigo-500/50 shadow-md" />
+          } @else {
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-purple-600 text-white text-xl font-bold flex items-center justify-center shadow-md">
+              {{ (user.name || user.email || 'U').charAt(0).toUpperCase() }}
+            </div>
+          }
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 mb-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Signed In
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-white">Welcome, {{ user.name || 'User' }}!</h1>
+            <p class="text-xs text-slate-400 mt-1">{{ user.email }} • ID: <span class="font-mono text-slate-300">{{ user.id }}</span></p>
+          </div>
+        </div>
+
+        <button
+          (click)="logout()"
+          class="px-4 py-2 rounded-xl text-xs font-semibold text-rose-300 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 transition-colors cursor-pointer"
+        >
+          Sign Out
+        </button>
+      </div>
+    }
+
+    <!-- Simple Workspace Placeholders -->
+    <div class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 sm:p-8 space-y-6">
+      <div>
+        <h2 class="text-xl font-bold text-white">PDF Automation Workspace</h2>
+        <p class="text-sm text-slate-400 mt-1">
+          Here you will be able to supply your CSV/Excel spreadsheet and PDF/DOCX templates to batch-generate multi-page documents.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        
+        <!-- Step 1 Placeholder -->
+        <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-xs">
+            1
+          </div>
+          <h3 class="text-sm font-semibold text-white">Spreadsheet Data</h3>
+          <p class="text-xs text-slate-400">CSV or Excel spreadsheet (.csv, .xlsx) containing row records.</p>
+        </div>
+
+        <!-- Step 2 Placeholder -->
+        <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-rose-500/10 text-rose-400 flex items-center justify-center font-bold text-xs">
+            2
+          </div>
+          <h3 class="text-sm font-semibold text-white">Template File</h3>
+          <p class="text-xs text-slate-400">Fillable PDF form or Word (.docx) template with variable placeholders.</p>
+        </div>
+
+        <!-- Step 3 Placeholder -->
+        <div class="p-5 rounded-2xl bg-slate-950/60 border border-slate-800/80 space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-500/10 text-indigo-400 flex items-center justify-center font-bold text-xs">
+            3
+          </div>
+          <h3 class="text-sm font-semibold text-white">Batch Output</h3>
+          <p class="text-xs text-slate-400">Multi-page PDF where every page contains that row's printed data.</p>
+        </div>
+
+      </div>
+
+      <div class="p-4 rounded-xl bg-indigo-950/30 border border-indigo-900/50 text-xs text-indigo-300 flex items-center gap-2">
+        <svg class="w-4 h-4 shrink-0 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span>Workspace module initialized. Ready to connect batch processing services next.</span>
+      </div>
+    </div>
+
+  </div>
+</div>

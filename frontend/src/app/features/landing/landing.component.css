@@ -1,0 +1,16 @@
+/* Custom styling for landing glow effects */
+@keyframes subtlePulse {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.05);
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 7s ease-in-out infinite;
+}
+
