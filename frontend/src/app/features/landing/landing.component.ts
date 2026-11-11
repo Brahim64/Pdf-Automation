@@ -21,9 +21,9 @@ export class LandingComponent implements OnInit {
   public errorMessage: string | null = null;
 
   ngOnInit(): void {
-    // If user is already logged in, redirect them to the home page
+    // If user is already logged in, redirect them to the dashboard
     if (this.authService.getCurrentUser() || this.authService.getToken()) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/dashboard']);
       return;
     }
 
@@ -36,8 +36,8 @@ export class LandingComponent implements OnInit {
         this.authService.loginWithGoogle(user.idToken).subscribe({
           next: () => {
             this.isLoggingIn = false;
-            // Redirect to home page upon login
-            this.router.navigate(['/home']);
+            // Redirect to the dashboard upon login
+            this.router.navigate(['/dashboard']);
           },
           error: (err) => {
             this.isLoggingIn = false;
@@ -54,6 +54,6 @@ export class LandingComponent implements OnInit {
    */
   demoLogin(): void {
     this.authService.loginWithMock('Sarah Connor', 'sarah.connor@example.com');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/dashboard']);
   }
 }

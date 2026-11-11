@@ -12,7 +12,7 @@ import { AuthService } from '../../../core/auth/auth.service';
     <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80 transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <!-- Brand -->
-        <a [routerLink]="(currentUser$ | async) ? '/home' : '/'" class="flex items-center gap-3 group">
+        <a [routerLink]="(currentUser$ | async) ? '/dashboard' : '/'" class="flex items-center gap-3 group">
           <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-0.5 shadow-md shadow-indigo-500/20 group-hover:shadow-indigo-500/40 transition-shadow">
             <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
               <svg class="w-5 h-5 text-indigo-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,15 +28,6 @@ import { AuthService } from '../../../core/auth/auth.service';
             <span class="hidden sm:block text-[10px] text-slate-400 -mt-1 tracking-wider uppercase">CSV & Excel to Multi-Page PDF</span>
           </div>
         </a>
-
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
-          @if (currentUser$ | async) {
-            <a routerLink="/home" class="hover:text-white transition-colors text-indigo-400">Workspace</a>
-          } @else {
-            <a routerLink="/" class="hover:text-white transition-colors">Overview</a>
-          }
-        </nav>
 
         <!-- Right Side: Auth State -->
         <div class="flex items-center gap-3">

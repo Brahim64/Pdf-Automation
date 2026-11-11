@@ -57,7 +57,7 @@ import { RouterLink } from '@angular/router';
           <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-200 mb-3">Navigation</h4>
           <ul class="space-y-1.5 text-xs">
             <li><a routerLink="/" class="hover:text-white transition-colors">Landing Page</a></li>
-            <li><a routerLink="/home" class="hover:text-white transition-colors">Workspace</a></li>
+            <li><a routerLink="/dashboard" class="hover:text-white transition-colors">Dashboard</a></li>
           </ul>
         </div>
       </div>
