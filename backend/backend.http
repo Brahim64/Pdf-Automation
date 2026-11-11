@@ -1,6 +1,117 @@
 @backend_HostAddress = http://localhost:5241
+@projectId = 00000000-0000-0000-0000-000000000001
+@missingProjectId = 00000000-0000-0000-0000-000000000000
+@dataSourceId = 00000000-0000-0000-0000-000000000002
+@templateId = 00000000-0000-0000-0000-000000000003
 
-GET {{backend_HostAddress}}/weatherforecast/
+### Create a project (requires a bearer token)
+POST {{backend_HostAddress}}/api/projects
+Authorization: ******
+Content-Type: application/json
+
+{
+  "name": "Invoice Automation",
+  "description": "Projects for generating customer invoices."
+}
+
+### List projects owned by the current user
+GET {{backend_HostAddress}}/api/projects
+Authorization: ******
 Accept: application/json
 
-###
+### Get a project (replace the ID with one returned from the list or create request)
+GET {{backend_HostAddress}}/api/projects/{{projectId}}
+Authorization: ******
+Accept: application/json
+
+### Get a project that does not exist (returns 404)
+GET {{backend_HostAddress}}/api/projects/{{missingProjectId}}
+Authorization: ******
+Accept: application/json
+
+### Update a project (replace the ID with one returned from the list or create request)
+PUT {{backend_HostAddress}}/api/projects/{{projectId}}
+Authorization: ******
+Content-Type: application/json
+
+{
+  "name": "Invoice Automation",
+  "description": "Updated project description."
+}
+
+### Delete an empty project (returns 409 while project resources exist)
+DELETE {{backend_HostAddress}}/api/projects/{{projectId}}
+Authorization: ******
+
+### Upload a CSV or Excel data source (requires a bearer token)
+POST {{backend_HostAddress}}/api/data-sources
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=UploadBoundary
+
+--UploadBoundary
+Content-Disposition: form-data; name="projectId"
+
+{{projectId}}
+--UploadBoundary
+Content-Disposition: form-data; name="file"; filename="data.csv"
+Content-Type: text/csv
+
+< C:\path\to\data.csv
+--UploadBoundary--
+
+### List data sources (optionally filter with ?projectId={{projectId}})
+GET {{backend_HostAddress}}/api/data-sources?projectId={{projectId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get data source metadata
+GET {{backend_HostAddress}}/api/data-sources/{{dataSourceId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get data source column names
+GET {{backend_HostAddress}}/api/data-sources/{{dataSourceId}}/columns
+Authorization: ******
+Accept: application/json
+
+### Download a data source
+GET {{backend_HostAddress}}/api/data-sources/{{dataSourceId}}/download
+Authorization: Bearer {{token}}
+
+### Delete a data source
+DELETE {{backend_HostAddress}}/api/data-sources/{{dataSourceId}}
+Authorization: Bearer {{token}}
+
+### Upload a PDF or DOCX template (requires a bearer token)
+POST {{backend_HostAddress}}/api/templates
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=UploadBoundary
+
+--UploadBoundary
+Content-Disposition: form-data; name="projectId"
+
+{{projectId}}
+--UploadBoundary
+Content-Disposition: form-data; name="file"; filename="template.pdf"
+Content-Type: application/pdf
+
+< C:\path\to\template.pdf
+--UploadBoundary--
+
+### List templates (optionally filter with ?projectId={{projectId}})
+GET {{backend_HostAddress}}/api/templates?projectId={{projectId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Get template metadata
+GET {{backend_HostAddress}}/api/templates/{{templateId}}
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Download a template
+GET {{backend_HostAddress}}/api/templates/{{templateId}}/download
+Authorization: Bearer {{token}}
+
+### Delete a template
+DELETE {{backend_HostAddress}}/api/templates/{{templateId}}
+Authorization: Bearer {{token}}
